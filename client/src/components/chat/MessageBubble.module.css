@@ -1,0 +1,121 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    margin: 6px 0;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.right {
+    justify-content: flex-end;
+}
+
+/* ⭐ CHAT BUBBLE */
+.bubble {
+    max-width: 75%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    position: relative;
+    background: #f1f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    word-break: break-word;
+    animation: pop 0.15s ease;
+}
+
+/* RIGHT MESSAGE COLOR */
+.right .bubble {
+    background: #2ecc71;
+    color: white;
+}
+
+/* ⭐ WHATSAPP TAIL LEFT */
+.left .bubble::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: #f1f0f0;
+    transform: rotate(45deg);
+}
+
+/* ⭐ WHATSAPP TAIL RIGHT */
+.right .bubble::before {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: #2ecc71;
+    transform: rotate(45deg);
+}
+
+/* META INFO */
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    margin-top: 4px;
+    opacity: 0.8;
+}
+
+/* TICKS */
+.ticks {
+    margin-left: 4px;
+    font-size: 12px;
+    color: #555;
+}
+
+.seen {
+    color: #4fc3f7;
+}
+
+/* DELETE BUTTON */
+.deleteBtn {
+    margin-left: 6px;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.2s;
+    pointer-events: none;
+}
+
+.bubble:hover .deleteBtn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ⭐ SEND ANIMATION */
+@keyframes pop {
+    from {
+        transform: scale(0.96);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ⭐ HOVER LIFT EFFECT */
+.bubble {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bubble:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .bubble {
+        max-width: 85%;
+        font-size: 14px;
+    }
+}
