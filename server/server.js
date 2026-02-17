@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import http from "http";
 import mongoose from "mongoose";
@@ -15,27 +18,22 @@ app.use(express.json());
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: {
-    origin: "*",
-  },
+  cors: { origin: "*" },
 });
 
 socketHandler(io);
 app.use("/api", messageRoutes);
 
-// ⭐ Stable start function (no DNS changes)
 const startServer = async () => {
   try {
-    await mongoose.connect(
-      "mongodb://127.0.0.1:27017/chatapp", // 👈 keep your OLD WORKING URI here
-      // or your previous working atlas/local connection
-    );
+    await mongoose.connect(process.env.MONGO_URI);
 
     console.log("✅ MongoDB connected");
 
-    // IMPORTANT: allow mobile access on same WiFi
-    server.listen(5000, "0.0.0.0", () => {
-      console.log("🚀 Server running on port 5000");
+    const PORT = process.env.PORT || 5000;
+
+    server.listen(PORT, "0.0.0.0", () => {
+      console.log(`🚀 Server running on port ${PORT}`);
     });
   } catch (error) {
     console.log("❌ MongoDB connection error:", error);
