@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import { BASE_URL } from "../config/api";
 
 const SocketContext = createContext();
 
@@ -19,12 +20,6 @@ export const SocketProvider = ({ children }) => {
     }
 
     setMyId(id);
-
-    const protocol = window.location.protocol === "https:" ? "https" : "http";
-
-    const BASE_URL =
-      import.meta.env.VITE_API_URL ||
-      `${protocol}://${window.location.hostname}:5000`;
 
     const newSocket = io(BASE_URL, {
       query: { userId: id },
