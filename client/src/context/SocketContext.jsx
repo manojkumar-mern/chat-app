@@ -20,8 +20,15 @@ export const SocketProvider = ({ children }) => {
 
     setMyId(id);
 
-    const newSocket = io(import.meta.env.VITE_API_URL, {
+    const protocol = window.location.protocol === "https:" ? "https" : "http";
+
+    const BASE_URL =
+      import.meta.env.VITE_API_URL ||
+      `${protocol}://${window.location.hostname}:5000`;
+
+    const newSocket = io(BASE_URL, {
       query: { userId: id },
+      transports: ["websocket"],
     });
 
     setSocket(newSocket);
