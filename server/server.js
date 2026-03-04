@@ -25,8 +25,10 @@ socketHandler(io);
 app.use("/api", messageRoutes);
 
 const startServer = async () => {
+
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/chatapp");
+
+    await mongoose.connect(process.env.MONGO_URI);
 
     console.log("✅ MongoDB connected");
 
@@ -35,7 +37,10 @@ const startServer = async () => {
     server.listen(PORT, "0.0.0.0", () => {
       console.log(`🚀 Server running on port ${PORT}`);
     });
-  } catch (error) {
+
+  }
+  
+  catch (error) {
     console.log("❌ MongoDB connection error:", error);
   }
 };
