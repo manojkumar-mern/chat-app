@@ -122,6 +122,7 @@ export default function Chat() {
   };
 
   const deleteMessage = (id) => {
+    if (String(id).startsWith("temp_")) return;
     socket.emit("delete_message", id);
   };
 
