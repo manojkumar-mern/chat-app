@@ -44,7 +44,7 @@ export default function socketHandler(io) {
       });
     });
 
-    // SEEN EVENT (THIS FIXES BLUE TICK)
+    // SEEN EVENT 
     socket.on("message_seen", async (id) => {
       await Message.findByIdAndUpdate(id, {
         status: "seen",
@@ -58,6 +58,7 @@ export default function socketHandler(io) {
 
     // DELETE MESSAGE
     socket.on("delete_message", async (id) => {
+      if (!id || id.startsWith("temp_")) return;
       await Message.findByIdAndDelete(id);
       io.emit("message_deleted", id);
     });
