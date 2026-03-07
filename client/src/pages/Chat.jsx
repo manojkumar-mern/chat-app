@@ -136,9 +136,9 @@ export default function Chat() {
         <div className={styles.logo}>💬 ChatApp</div>
 
         <div className={styles.conversations}>
-          <div className={styles.convItem}>💬 General Chat </div>
-          <div className={styles.convItem}>👨‍💻 Community </div>
-          <div className={styles.convItem}>🔥 Status </div>
+          <div className={styles.convItem}> General Chat </div>
+          <div className={styles.convItem}> Community </div>
+          <div className={styles.convItem}> Status </div>
         </div>
       </div>
 
