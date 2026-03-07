@@ -19,7 +19,11 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Chat App Backend Running Successfully");
+  res.json({
+    status: "Server Running",
+    database: "MongoDB Connected",
+    project: "Realtime Chat App",
+  });
 });
 
 const server = http.createServer(app);
