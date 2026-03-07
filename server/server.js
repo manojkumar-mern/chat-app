@@ -18,6 +18,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Chat App Backend Running Successfully");
+});
+
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -25,6 +29,7 @@ const io = new Server(server, {
 });
 
 socketHandler(io);
+
 app.use("/api", messageRoutes);
 
 const startServer = async () => {
