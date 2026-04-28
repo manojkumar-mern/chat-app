@@ -18,7 +18,7 @@ A full-stack real-time chat application built using the MERN stack.
 ## Live Demo
 
 ## Frontend
-https://chat-app-kappa-ashy.vercel.app
+https://chat-app-manoj.vercel.app
 
 ## Backend
 https://chat-app-y0ic.onrender.com/
